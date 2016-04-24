@@ -1,0 +1,105 @@
+ALPHABET
+
+a b c ç d e f g ğ h ı i j k l m n o ö p r s ş t u ü v y z;
+
+SETS
+
+! vowels
+V = a e ı i o ö u ü;
+
+! back vowels
+Vb = a ı o u;
+
+! back rounded vowels
+Vbr = o u;
+
+! back unrounded vowels
+Vbur = a ı;
+
+! front vowels
+Vf = e i ö ü;
+
+! front rounded vowels
+Vfr = ö ü;
+
+! front unrounded vowels
+Vfur = e i;
+
+! consonants
+C = b c ç d f g ğ h j k l m n p r s ş t v y z;
+
+! voiceless consonants
+Cvl = f s t k ç ş h p;
+
+! voiced consonants
+Cvd = b c d g ğ j l m n r v y z;
+
+RULES
+
+"1. Vowel Harmony A:e"
+! A surfaces as e if the last vowel in stem is a front vowel
+A:e => :Vf [:C* :0*]* _;
+
+"2. Vowel Harmony A:a"
+! A surfaces as a if the last vowel in stem is a back vowel
+A:a => :Vb [:C* :0*]* _;
+
+"3. Vowel Harmony H:ü"
+! H surfaces as ü if the last vowel in stem is a front rounded vowel
+H:ü => :Vfr [:C* :0*]* _;
+
+"4. Vowel Harmony H:u"
+! H surfaces as u if the last vowel in stem is a back rounded vowel
+H:u => :Vbr [:C* :0*]* _;
+
+"5. Vowel Harmony H:i"
+! H surfaces as i if the last vowel in stem is a front unrounded vowel
+H:i => :Vfur [:C* :0*]* _;
+
+"6. Vowel Harmony H:ı"
+! H surfaces as ı if the last vowel in stem is a back unrounded vowel
+H:ı => :Vbur [:C* :0*]* _;
+
+"7. Vowel Drop a:0"
+! the last vowel a in stem drops when followed by progressive suffix -Hyor
+a:0 <=> _ %+:0 H: y: o: r:;
+
+"8. Vowel Drop e:0"
+! the last vowel e in stem drops when followed by progressive suffix -Hyor
+e:0 <=> _ %+:0 H: y: o: r:;
+
+"9. Vowel Drop A:0"
+! the last vowel A in morpheme drops when followed by progressive suffix -Hyor
+A:0 <=> _ %+:0 H: y: o: r:;
+
+"10. Vowel Drop H:0"
+! the first vowel of aorist suffix -Hr drops when attached to a stem ending in a vowel
+H:0 <=> V: %+:0 _ r;
+
+"11. Consonant Drop y:0"
+! y at the beginning of the suffix drops when attached to a stem ending in a constant
+y:0 <=> :C %+:0 _ ;
+
+"12. Consonant Softening t:d"
+! t surfaces as d when followed by a vowel H or A
+t:d <=> _ %+:0 :0* [H: | A:];
+
+"13. Consonant Softening k:ğ"
+! k surfaces as ğ when followed by a vowel H or A
+k:ğ <=> _ %+:0 :0* [H: | A:];
+
+"14. Consonant Softening ç:c"
+! ç surfaces as c when followed by a vowel H or A
+ç:c <=> _ %+:0 :0* [H: | A:];
+
+"15. Consonant Softening p:b"
+! p surfaces as b when followed by a vowel H or A
+p:b <=> _ %+:0 :0* [H: | A:];
+
+"16. Assimilation D:t"
+! D surfaces as t when attached to a morpheme ending in a voiceless consonant
+D:t <=> :Cvl %+:0 _;
+
+"17. No Assimilation D:d"
+! D surfaces as d when attached to a morpheme ending in a vowel or voiced consonant
+D:d <=> [:V | :Cvd] %+:0 _;
