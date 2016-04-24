@@ -1,0 +1,79 @@
+Multichar_Symbols
+  +POS +NEG +ABL +AOR +PRG +PST +NAR +FUT +P1S +P2S +P3S +P1P +P2P +P3P
+
+LEXICON Root
+  iste            Neg;
+  anla            Neg;
+  çalış           Neg;
+  öğren           Neg;
+
+LEXICON Neg
+  +POS:0          Abl;
+  +POS:0          Aor;
+  +POS:0          Prg;
+  +POS:0          Pst;
+  +POS:0          Nar;
+  +POS:0          Fut;
+  +NEG:0          NegAbl;
+  +NEG:0          NegAor;
+  +NEG:+mA        Prg;
+  +NEG:+mA        Pst;
+  +NEG:+mA        Nar;
+  +NEG:+mA        Fut;
+
+LEXICON NegAbl
+  +ABL:+yA        NegAor;
+  +ABL:+yAmA      Prg;
+  +ABL:+yAmA      Pst;
+  +ABL:+yAmA      Nar;
+  +ABL:+yAmA      Fut;
+
+LEXICON NegAor
+  +AOR:+mA        NegAorPers;
+
+LEXICON Abl
+  +ABL:+yAbil     Aor;
+  +ABL:+yAbil     Prg;
+  +ABL:+yAbil     Pst;
+  +ABL:+yAbil     Nar;
+  +ABL:+yAbil     Fut;
+
+LEXICON Aor
+  +AOR:+Hr        AorPrgNarFutPerson;
+
+LEXICON Prg
+  +PRG:+Hyor      AorPrgNarFutPerson;
+
+LEXICON Pst
+  +PST:+DH        PstPerson;
+
+LEXICON Nar
+  +NAR:+mHş       AorPrgNarFutPerson;
+
+LEXICON Fut
+  +FUT:+yAcAk     AorPrgNarFutPerson;
+  +FUT:+yAcAk     AorPrgNarFutPerson;
+
+LEXICON NegAorPers
+  +P1S:+m         #;
+  +P2S:+zsHn      #;
+  +P3S:+z         #;
+  +P1P:+yHz       #;
+  +P2P:+zsHnHz    #;
+  +P3P:+zlAr      #;
+
+LEXICON PstPerson
+  +P1S:+m         #;
+  +P2S:+n         #;
+  +P3S:0          #;
+  +P1P:+k         #;
+  +P2P:+nHz       #;
+  +P3P:+lAr       #;
+
+LEXICON AorPrgNarFutPerson
+  +P1S:+Hm        #;
+  +P2S:+sHn       #;
+  +P3S:0          #;
+  +P1P:+Hz        #;
+  +P2P:+sHnHz     #;
+  +P3P:+lAr       #;
